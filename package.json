@@ -1,0 +1,28 @@
+{
+  "name": "agriarkGame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^14.0.0",
+    "phaser": "^3.55.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.1"
+  },
+  "scripts": {
+    "start": "parcel src/index.html -p 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudkwt/agriarkGame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claudkwt/agriarkGame/issues"
+  },
+  "homepage": "https://github.com/claudkwt/agriarkGame#readme"
+}
