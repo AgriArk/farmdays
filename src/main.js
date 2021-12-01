@@ -1,9 +1,18 @@
-// import Phaser from "phaser";
 console.log("mainjs loaded")
 var config = {
-    type: Phaser.AUTO,
+    type: Phaser.AUTO, //renderer
     width: 800,
     height: 600,
+    // scale: {
+    //     parent: "main",
+    //     mode: Phaser.Scale.FIT,
+    //     autoCenter: Phaser.Scale.CENTER_BOTH,
+    //     width: 800,
+    //     height: 500
+    // },
+    dom: {
+        createContainer: true
+    },
     physics: {
         default: 'arcade',
         arcade: {
