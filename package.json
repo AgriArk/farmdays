@@ -4,15 +4,18 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "http-server": "^14.0.0",
+    "nodemon": "^2.0.15",
     "phaser": "^3.55.2"
   },
   "devDependencies": {
     "parcel": "^2.0.1"
   },
   "scripts": {
-    "start": "parcel src/index.html -p 8000",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startOld": "parcel src/index.html -p 8000"
   },
   "repository": {
     "type": "git",
