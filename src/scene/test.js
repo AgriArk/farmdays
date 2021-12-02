@@ -6,9 +6,10 @@ var testScene = new Phaser.Class({
     },
     init: function(data) {
         this.message = data.message;
+        this.totalScore = data.totalScore
     },
     preload: function() {
-        this.load.image('bg', '../assets/test.jpg');
+        this.load.image("bg", "../assets/background.png");
         this.load.image('ground', '../assets/tiles/hydroponics-structure.png');
     },
     create: function() {
@@ -21,8 +22,13 @@ var testScene = new Phaser.Class({
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
-        var text = this.add.text(
+        var messageText = this.add.text(
             300, 200, this.message, {
+                fontSize: 50, color: "#FFFFFF", fontStyle: "bold"
+            }
+        );
+        var totalScoreText = this.add.text(
+            360, 240, this.totalScore, {
                 fontSize: 50, color: "#FFFFFF", fontStyle: "bold"
             }
         )

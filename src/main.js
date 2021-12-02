@@ -21,6 +21,7 @@ var config = {
             debug: false
         }
     },
+    //ordered, scenes are loaded from right to left, most left scene will appear
     scene: [ gameScene, testScene ]  
 };
 
