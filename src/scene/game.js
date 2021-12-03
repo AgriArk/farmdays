@@ -1,23 +1,63 @@
+// const e = require("express");
+
 console.log('game.js running')
 
 var smolDict = {
-    "natural": { "x": 275, "y": 280, "scale": 1.1},
-    "renewable": { "x": 275, "y": 280, "scale": 1.1},
-    "hydroponic": { "x": 300, "y": 300, "scale": 0.7},
-    "soil": {"x": 300, "y": 300, "scale": 1.3},
-    "aquaponic": {"x": 300, "y": 300, "scale": 1.1},
-    "harvester": {"x": 375, "y": 325, "scale": 1.2},
-    "seeding": {"x": 350, "y": 325, "scale": 1.2},
-    "sensor": {"x": 350, "y": 325, "scale": 1.2}
+    'currentElectricity': 0,
+    'totalElectricityAllowable': 1,
+    'currentLeaf': 0 , 
+    'totalLeafAllowable': 1, 
+    'currentRobot': 0, 
+    'totalRobotAllowable': 1,
+    "natural":      { "x": 380, "y": 270, "scale": 1.1},
+    "renewable":    { "x": 380, "y": 270, "scale": 1.1},
+    "hydroponic":   { "x": 260, "y": 260, "scale": 0.7},
+    "soil":         { "x": 260, "y": 260, "scale": 1.3},
+    "aquaponic":    { "x": 260, "y": 260, "scale": 1.0},
+    "harvester":    { "x": 375, "y": 290, "scale": 1.2},
+    "seeding":      { "x": 350, "y": 310, "scale": 1.0},
+    "sensor":       { "x": 290, "y": 300, "scale": 1.3}
 };
 
-var mediumDict = {    
-    "natural": { "x": 600, "y": 200, "scale": 1.2}
+var mediumDict = {
+    'currentElectricity': 0,
+    'totalElectricityAllowable': 1,
+    'currentLeaf': 0 , 
+    'totalLeafAllowable': 1, 
+    'currentRobot': 0, 
+    'totalRobotAllowable': 2,
+    "natural":      { "x": 330, "y": 270, "scale": 1.1},
+    "renewable":    { "x": 330, "y": 270, "scale": 1.1},
+    "hydroponic":   { "x": 200, "y": 290, "scale": 0.7},
+    "soil":         { "x": 200, "y": 290, "scale": 1.3},
+    "aquaponic":    { "x": 200, "y": 290, "scale": 1.0},
+    "harvester":    { "x": 410, "y": 275, "scale": 1.2},
+    "seeding":      { "x": 320, "y": 310, "scale": 1.0},
+    "sensor":       { "x": 220, "y": 340, "scale": 1.3}
 };
 
 var largeDict = {
-    "natural": { "x": 100, "y": 400, "scale": 1.2}
+    'currentElectricity': 0,
+    'totalElectricityAllowable': 1,
+    'currentLeaf': 0 , 
+    'totalLeafAllowable': 1, 
+    'currentRobot': 0, 
+    'totalRobotAllowable': 3,
+    "natural":      { "x": 350, "y": 210, "scale": 1.1},
+    "renewable":    { "x": 350, "y": 210, "scale": 1.1},
+    "hydroponic":   { "x": 230, "y": 270, "scale": 0.8},
+    "soil":         { "x": 230, "y": 270, "scale": 1.4},
+    "aquaponic":    { "x": 230, "y": 270, "scale": 1.1},
+    "harvester":    { "x": 460, "y": 230, "scale": 1.2},
+    "seeding":      { "x": 360, "y": 270, "scale": 1.0},
+    "sensor":       { "x": 230, "y": 320, "scale": 1.3}
 };
+
+// var categories = {
+//     'Electricity' : ['natural', 'renewable'],
+//     'Leaf': ['hydroponic', 'soil', 'aquaponic'],
+//     'Robot': ['harvester', 'seeding', 'sensor']
+// };
 
 var gameScene = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -25,7 +65,7 @@ var gameScene = new Phaser.Class({
         Phaser.Scene.call(this, { "key": "gameScene" });
     },
     init: function(data) {
-        this.roomSize = 0;//data.roomSize; //0 = smol, 1 = medium, 2 = large
+        this.roomSize = 2;//data.roomSize; //0 = smol, 1 = medium, 2 = large
         this.initialTime = 300; //5 minutes timer
     },
     preload: function() {
@@ -38,6 +78,7 @@ var gameScene = new Phaser.Class({
         this.load.image("human", "../assets/gameButtons/human.png");
         this.load.image("leaf", "../assets/gameButtons/leaf.png");
         this.load.image("robot", "../assets/gameButtons/robot.png");
+        this.load.image("done-button", "../assets/gameButtons/done-button.png");        
         
         //option tiles
         this.load.image("harvester", "../assets/tiles/harvester.png");
@@ -80,8 +121,14 @@ var gameScene = new Phaser.Class({
         this.add.image(550, 25, 'sb').setOrigin(0, 0).setScale(1.1);
         
         //adding image of room onto the canvas
-        this.room = this.add.image(50, 100, "roomImage").setOrigin(0, 0);
+        this.room = this.add.image(50, 75, "roomImage").setOrigin(0, 0);
         this.room.setScale(2);
+        
+        //adding in-game error message
+        this.errorText = this.add.text(200, 410, '',
+            {
+                fontSize: 30, color: "#FFFFFF", fontStyle: "bold"
+            });
         
         //adding countdown timer at the top of the page
         this.timeText = this.add.text(32,32, 'Countdown: ' + formatTime(this.initialTime),
@@ -188,10 +235,11 @@ var gameScene = new Phaser.Class({
 
     update: function() {
         if (this.initialTime == 0){
-            this.scene.start("testScene ");
+            this.scene.start("testScene");
         }
     },
 
+    //callbacks to trigger side bar display, trigger event is respective button clicks
     electricityDisplay: function() {
         console.log("Electricity Display triggered");
         var x;
@@ -235,11 +283,31 @@ var gameScene = new Phaser.Class({
         console.log("Human Display triggered");
     },
 
+    //callback to trigger placement of tiles on the room, trigger event is clicking on tiles on side bar
     tileCallback: function(sprite) {
+        this.errorText.setText('');
         console.log('tile callback triggered');
-        console.log(this.roomSize)
-        console.log(this.roomData)
-        this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]["y"], sprite).setScale(this.roomData[sprite]["scale"])
+        console.log('Before', this.roomData);
+        var category;
+        if ( sprite == "natural" || sprite == "renewable") {
+            category = "Electricity";
+        } else if ( sprite == 'hydroponic' || sprite == 'soil' || sprite == "aquaponic" ) {
+            category = "Leaf";
+        } else if ( sprite == "harvester" || sprite == "seeding" || sprite == "sensor" ) {
+            category = "Robot";
+        };
+
+        if ( this.roomData['current'+ category] + 1 <= this.roomData['total' + category+ 'Allowable']) {
+                this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]["y"], sprite).setScale(this.roomData[sprite]["scale"]);
+                this.roomData ['current' + category] += 1;
+        } else {
+            this.errorText.setText('Insufficient space');
+        };
+        if ( this.roomData['currentElectricity'] == this.roomData['totalElectricityAllowable'] && 
+            this.roomData['currentLeaf'] == this.roomData['totalLeafAllowable']){
+                this.done = this.add.sprite(240, 420, 'done-button').setOrigin(0,0).setScale(0.25);
+        }
+        console.log("After:", this.roomData);
     }
 });
 
