@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"textures": [
 		{
@@ -102,3 +103,109 @@
 		"smartupdate": "$TexturePacker:SmartUpdate:542c6c2e42cd0e0267f9436cf0feef89:ce0fee8b1e3aaddab74c980d6d4fd77b:ae50d30d8ba31a61b491add55e69dc6b$"
 	}
 }
+=======
+{
+	"textures": [
+		{
+			"image": "harvester-anim.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 84,
+				"h": 407
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 16,
+						"w": 82,
+						"h": 102
+					},
+					"frame": {
+						"x": 1,
+						"y": 109,
+						"w": 82,
+						"h": 102
+					}
+				},
+				{
+					"filename": "002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 29,
+						"w": 82,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 317,
+						"w": 82,
+						"h": 89
+					}
+				},
+				{
+					"filename": "003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 12,
+						"w": 82,
+						"h": 106
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 82,
+						"h": 106
+					}
+				},
+				{
+					"filename": "004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 16,
+						"w": 82,
+						"h": 102
+					},
+					"frame": {
+						"x": 1,
+						"y": 213,
+						"w": 82,
+						"h": 102
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:542c6c2e42cd0e0267f9436cf0feef89:ce0fee8b1e3aaddab74c980d6d4fd77b:ae50d30d8ba31a61b491add55e69dc6b$"
+	}
+}
+>>>>>>> 7d54d4d9d47da0133a42262c1598622676bddf15

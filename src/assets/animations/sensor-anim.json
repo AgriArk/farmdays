@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"textures": [
 		{
@@ -102,3 +103,109 @@
 		"smartupdate": "$TexturePacker:SmartUpdate:a797b0c26ddd31db25cb24b4ba0052da:f5f902de5f7bbfbb8be9d5d69ec82d68:0cd195f1d110ee3d11458b9ccb364fa3$"
 	}
 }
+=======
+{
+	"textures": [
+		{
+			"image": "sensor-anim.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 328,
+				"h": 88
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 27,
+						"w": 80,
+						"h": 86
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 80,
+						"h": 86
+					}
+				},
+				{
+					"filename": "002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 27,
+						"w": 80,
+						"h": 86
+					},
+					"frame": {
+						"x": 83,
+						"y": 1,
+						"w": 80,
+						"h": 86
+					}
+				},
+				{
+					"filename": "003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 27,
+						"w": 80,
+						"h": 86
+					},
+					"frame": {
+						"x": 165,
+						"y": 1,
+						"w": 80,
+						"h": 86
+					}
+				},
+				{
+					"filename": "004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 69,
+						"y": 27,
+						"w": 80,
+						"h": 86
+					},
+					"frame": {
+						"x": 247,
+						"y": 1,
+						"w": 80,
+						"h": 86
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:a797b0c26ddd31db25cb24b4ba0052da:f5f902de5f7bbfbb8be9d5d69ec82d68:0cd195f1d110ee3d11458b9ccb364fa3$"
+	}
+}
+>>>>>>> 7d54d4d9d47da0133a42262c1598622676bddf15
