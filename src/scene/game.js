@@ -2,6 +2,12 @@
 
 console.log('game.js running')
 
+var textStyle = {
+    fontSize: 30, 
+    color: "#000000", 
+    fontStyle: "bold"
+};
+
 var smolDict = {
     'currentElectricity': 0,
     'totalElectricityAllowable': 1,
@@ -9,6 +15,7 @@ var smolDict = {
     'totalLeafAllowable': 1, 
     'currentRobot': 0, 
     'totalRobotAllowable': 1,
+    'choices': {},
     "natural":      { "x": 380, "y": 270, "scale": 1.1},
     "renewable":    { "x": 380, "y": 270, "scale": 1.1},
     "hydroponic":   { "x": 260, "y": 260, "scale": 0.7},
@@ -16,7 +23,8 @@ var smolDict = {
     "aquaponic":    { "x": 260, "y": 260, "scale": 1.0},
     "harvester":    { "x": 375, "y": 290, "scale": 1.2},
     "seeding":      { "x": 350, "y": 310, "scale": 1.0},
-    "sensor":       { "x": 290, "y": 300, "scale": 1.3}
+    "sensor":       { "x": 290, "y": 300, "scale": 1.3},
+    "human":        { "x": 150, "y": 340, "scale": 2.0}
 };
 
 var mediumDict = {
@@ -26,6 +34,7 @@ var mediumDict = {
     'totalLeafAllowable': 1, 
     'currentRobot': 0, 
     'totalRobotAllowable': 2,
+    'choices': {},
     "natural":      { "x": 330, "y": 270, "scale": 1.1},
     "renewable":    { "x": 330, "y": 270, "scale": 1.1},
     "hydroponic":   { "x": 200, "y": 290, "scale": 0.7},
@@ -33,7 +42,8 @@ var mediumDict = {
     "aquaponic":    { "x": 200, "y": 290, "scale": 1.0},
     "harvester":    { "x": 410, "y": 275, "scale": 1.2},
     "seeding":      { "x": 320, "y": 310, "scale": 1.0},
-    "sensor":       { "x": 220, "y": 340, "scale": 1.3}
+    "sensor":       { "x": 220, "y": 340, "scale": 1.3},
+    "human":        { "x": 150, "y": 340, "scale": 2.0}
 };
 
 var largeDict = {
@@ -43,6 +53,7 @@ var largeDict = {
     'totalLeafAllowable': 1, 
     'currentRobot': 0, 
     'totalRobotAllowable': 3,
+    'choices': {},
     "natural":      { "x": 350, "y": 210, "scale": 1.1},
     "renewable":    { "x": 350, "y": 210, "scale": 1.1},
     "hydroponic":   { "x": 230, "y": 270, "scale": 0.8},
@@ -50,14 +61,9 @@ var largeDict = {
     "aquaponic":    { "x": 230, "y": 270, "scale": 1.1},
     "harvester":    { "x": 460, "y": 230, "scale": 1.2},
     "seeding":      { "x": 360, "y": 270, "scale": 1.0},
-    "sensor":       { "x": 230, "y": 320, "scale": 1.3}
+    "sensor":       { "x": 230, "y": 320, "scale": 1.3},
+    "human":        { "x": 175, "y": 328, "scale": 2.0}
 };
-
-// var categories = {
-//     'Electricity' : ['natural', 'renewable'],
-//     'Leaf': ['hydroponic', 'soil', 'aquaponic'],
-//     'Robot': ['harvester', 'seeding', 'sensor']
-// };
 
 var gameScene = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -65,8 +71,9 @@ var gameScene = new Phaser.Class({
         Phaser.Scene.call(this, { "key": "gameScene" });
     },
     init: function(data) {
-        this.roomSize = 2;//data.roomSize; //0 = smol, 1 = medium, 2 = large
+        this.roomNumber = 2; // data.roomNumber;//0 = smol, 1 = medium, 2 = large
         this.initialTime = 300; //5 minutes timer
+        this.initialHuman = 0; //initial manpower 
     },
     preload: function() {
         //background and sidebar
@@ -89,9 +96,12 @@ var gameScene = new Phaser.Class({
         this.load.image("renewable", "../assets/tiles/renewable.png");
         this.load.image("seeding", "../assets/tiles/seeding.png");
         this.load.image("sensor", "../assets/tiles/water-sensor.png");
+        this.load.image("quantity", "../assets/tiles/quantity.png");
+        this.load.image("plus", "../assets/tiles/plus.png");
+        this.load.image("minus", "../assets/tiles/minus.png");
         
         //image of the room
-        switch(this.roomSize) {
+        switch(this.roomNumber) {
             case 0:
                 this.load.image("roomImage", "../assets/roomScenes/smol.png");
                 this.roomData = smolDict;
@@ -125,16 +135,10 @@ var gameScene = new Phaser.Class({
         this.room.setScale(2);
         
         //adding in-game error message
-        this.errorText = this.add.text(200, 410, '',
-            {
-                fontSize: 30, color: "#FFFFFF", fontStyle: "bold"
-            });
+        this.errorText = this.add.text(50, 425, '', textStyle);
         
         //adding countdown timer at the top of the page
-        this.timeText = this.add.text(32,32, 'Countdown: ' + formatTime(this.initialTime),
-            {
-                fontSize: 30, color: "#FFFFFF", fontStyle: "bold"
-            });
+        this.timeText = this.add.text(32,32, 'Countdown: ' + formatTime(this.initialTime), textStyle);
         this.timedEvent = this.time.addEvent({
             delay: 1000,
             loop: true,
@@ -149,7 +153,7 @@ var gameScene = new Phaser.Class({
 
         //adding buttons at the bottom of the page
         //for each button, upon clicked, it will toggle the display for the respective choices on and off
-        this.electricitySprite = this.add.sprite(100,500, 'electricity').setInteractive().setScale(2);
+        this.electricitySprite = this.add.sprite(100,525, 'electricity').setInteractive().setScale(2);
         this.electricitySprite.on("pointerdown", function (pointer) {
               this.electricitySprite.setTint(808080);
               this.showElectricity = !this.showElectricity;
@@ -164,7 +168,7 @@ var gameScene = new Phaser.Class({
         this.electricitySprite.on('pointerout', function(pointer){this.clearTint();});
         this.electricitySprite.on('pointerup', function(pointer){this.clearTint();});
         
-        this.leafSprite = this.add.sprite(225,500, 'leaf').setInteractive().setScale(2);
+        this.leafSprite = this.add.sprite(225,525, 'leaf').setInteractive().setScale(2);
         this.leafSprite.on('pointerout', function(pointer){this.clearTint();});
         this.leafSprite.on('pointerdown', function(pointer){
                 this.leafSprite.setTint(808080);
@@ -179,7 +183,7 @@ var gameScene = new Phaser.Class({
             }, this);
         this.leafSprite.on('pointerup', function(pointer){this.clearTint();});
         
-        this.robotSprite = this.add.sprite(350,500, 'robot').setInteractive().setScale(2);
+        this.robotSprite = this.add.sprite(350,525, 'robot').setInteractive().setScale(2);
         this.robotSprite.on('pointerout', function(pointer){this.clearTint();});
         this.robotSprite.on('pointerdown', function(pointer){
             this.robotSprite.setTint(808080);
@@ -194,7 +198,7 @@ var gameScene = new Phaser.Class({
         }, this);
         this.robotSprite.on('pointerup', function(pointer){this.clearTint();});
         
-        this.humanSprite = this.add.sprite(475,500, 'human').setInteractive().setScale(2);
+        this.humanSprite = this.add.sprite(475,525, 'human').setInteractive().setScale(2);
         this.humanSprite.on('pointerout', function(pointer){this.clearTint();});
         this.humanSprite.on('pointerdown', function(pointer){
             this.humanSprite.setTint(808080);
@@ -221,6 +225,11 @@ var gameScene = new Phaser.Class({
         this.seedingSprite = this.add.sprite(665, 300, 'seeding').setInteractive().setVisible(0).setScale(1.2);
         this.sensorSprite = this.add.sprite(625, 450, 'sensor').setInteractive().setVisible(0).setScale(1.5);
         
+        this.quantitySprite = this.add.sprite(670, 100, 'quantity').setVisible(0).setScale(0.2);
+        this.plusSprite = this.add.sprite(600, 150, 'plus').setInteractive().setVisible(0).setScale(0.2);
+        this.minusSprite = this.add.sprite(700, 150, 'minus').setInteractive().setVisible(0).setScale(0.2);
+        this.quantityText = this.add.text(645, 135, '', textStyle);
+        
         //tiles triggers 
         this.naturalSprite.on('pointerdown', function(pointer){this.tileCallback('natural');}, this);
         this.renewableSprite.on('pointerdown', function(pointer){this.tileCallback('renewable');}, this);
@@ -230,12 +239,22 @@ var gameScene = new Phaser.Class({
         this.harvesterSprite.on('pointerdown', function(pointer){this.tileCallback('harvester');}, this);
         this.seedingSprite.on('pointerdown', function(pointer){this.tileCallback('seeding');}, this);
         this.sensorSprite.on('pointerdown', function(pointer){this.tileCallback('sensor');}, this);
+        this.plusSprite.on('pointerdown', function(pointer){this.quantityCallback(1);}, this);
+        this.minusSprite.on('pointerdown', function(pointer){this.quantityCallback(-1);}, this);
     
     },
 
     update: function() {
         if (this.initialTime == 0){
-            this.scene.start("testScene");
+            console.log('Times Up!')
+            this.errorText.setText("Times Up!")
+            if (this.initialHuman > 0){
+                this.roomData['choices']['human'] = this.initialHuman;
+            };
+            this.scene.start("endScene", {
+                "roomNumber": this.roomNumber,
+                "choices": this.roomData['choices']
+            });
         }
     },
 
@@ -281,13 +300,33 @@ var gameScene = new Phaser.Class({
     humanDisplay: function(){
         //NOT DONE: side bar display for human button
         console.log("Human Display triggered");
+        var x;
+        if (this.showHuman){
+            x = 1;
+            this.quantityText.setText(this.initialHuman);
+        } else {
+            x = 0;
+            this.quantityText.setText("");
+        }
+        this.quantitySprite.setVisible(x);
+        this.plusSprite.setVisible(x);
+        this.minusSprite.setVisible(x);
+    },
+
+    quantityCallback: function(num){
+        if (this.initialHuman == 0 && num < 0){
+            this.errorText.setText("Manpower cannot be negative");
+        } else{
+            this.errorText.setText("");
+            this.initialHuman += num;
+            this.quantityText.setText(this.initialHuman);
+        }
     },
 
     //callback to trigger placement of tiles on the room, trigger event is clicking on tiles on side bar
     tileCallback: function(sprite) {
         this.errorText.setText('');
         console.log('tile callback triggered');
-        console.log('Before', this.roomData);
         var category;
         if ( sprite == "natural" || sprite == "renewable") {
             category = "Electricity";
@@ -296,18 +335,37 @@ var gameScene = new Phaser.Class({
         } else if ( sprite == "harvester" || sprite == "seeding" || sprite == "sensor" ) {
             category = "Robot";
         };
-
-        if ( this.roomData['current'+ category] + 1 <= this.roomData['total' + category+ 'Allowable']) {
-                this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]["y"], sprite).setScale(this.roomData[sprite]["scale"]);
+        if (this.roomData['choices'][sprite] != null){
+            console.log('already present');
+            this.roomData['choices'][sprite].destroy()
+            this.roomData ['current' + category] -= 1;
+            delete this.roomData['choices'][sprite];
+        } else if ( this.roomData['current'+ category] + 1 <= this.roomData['total' + category+ 'Allowable']) {
+                spriteObj = this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]["y"], sprite).setScale(this.roomData[sprite]["scale"]);
+                console.log(sprite)
                 this.roomData ['current' + category] += 1;
+                this.roomData['choices'][sprite] = spriteObj;
+                console.log(this.roomData['choices']);
         } else {
             this.errorText.setText('Insufficient space');
         };
         if ( this.roomData['currentElectricity'] == this.roomData['totalElectricityAllowable'] && 
-            this.roomData['currentLeaf'] == this.roomData['totalLeafAllowable']){
-                this.done = this.add.sprite(240, 420, 'done-button').setOrigin(0,0).setScale(0.25);
-        }
-        console.log("After:", this.roomData);
+            this.roomData['currentLeaf'] == this.roomData['totalLeafAllowable'] && 
+            this.doneButton == null ){
+                //adding in done button
+                this.doneButton = this.add.sprite(420, 370, 'done-button').setInteractive().setOrigin(0,0).setScale(0.25);
+                //done button trigger
+                this.doneButton.on('pointerdown', function(pointer){
+                    console.log('done button is triggered');
+                    if (this.initialHuman > 0){
+                        this.roomData['choices']['human'] = this.initialHuman;
+                    };
+                    this.scene.start("endScene", {
+                        "roomNumber": this.roomNumber,
+                        "choices": this.roomData['choices']
+                    });
+                }, this);
+        };
     }
 });
 
