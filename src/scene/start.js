@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 console.log('start.js running');
 
 var startScene = new Phaser.Class({
@@ -50,5 +49,4 @@ var startScene = new Phaser.Class({
     update: function(){
 
     }
->>>>>>> 7d54d4d9d47da0133a42262c1598622676bddf15
 });
