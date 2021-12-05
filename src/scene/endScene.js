@@ -13,35 +13,35 @@ var endScene = new Phaser.Class({
     },
     preload: function() {
         //background and sidebar
-        this.load.image("bg", "../assets/background.png");
-        this.load.image("sb", "../assets/sidebar.png");
+        this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
+        this.load.image("sb", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/sidebar.png");
 
         //buttons
-        this.load.image("electricity", "../assets/gameButtons/electricity.png");
-        this.load.image("human", "../assets/gameButtons/human.png");
-        this.load.image("leaf", "../assets/gameButtons/leaf.png");
-        this.load.image("robot", "../assets/gameButtons/robot.png");     
+        this.load.image("electricity", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/electricity.png");
+        this.load.image("human", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/human.png");
+        this.load.image("leaf", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/leaf.png");
+        this.load.image("robot", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/robot.png");     
         
         //option spritesheets and json
-        this.load.multiatlas('seeding-anim', '../assets/animations/seeding-anim.json',"assets/animations");
-        this.load.multiatlas('harvester-anim', '../assets/animations/harvester-anim.json',"assets/animations");
-        this.load.multiatlas('sensor-anim', '../assets/animations/sensor-anim.json',"assets/animations");
-        this.load.multiatlas('aquaponic-anim', '../assets/animations/aquaponic-anim.json',"assets/animations");
-        this.load.multiatlas('soil-anim', '../assets/animations/soil-anim.json',"assets/animations");
-        this.load.multiatlas('human-anim', '../assets/animations/human-anim.json',"assets/animations");
+        this.load.multiatlas('seeding-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/seeding-anim.json',"assets/animations");
+        this.load.multiatlas('harvester-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/harvester-anim.json',"assets/animations");
+        this.load.multiatlas('sensor-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/sensor-anim.json',"assets/animations");
+        this.load.multiatlas('aquaponic-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/aquaponic-anim.json',"assets/animations");
+        this.load.multiatlas('soil-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/soil-anim.json',"assets/animations");
+        this.load.multiatlas('human-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/human-anim.json',"assets/animations");
 
         //image of the room
         switch(this.roomNumber) {
             case 0:
-                this.load.image("roomImage", "../assets/roomScenes/smol.png");
+                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
                 this.roomData = smolDict;
                 break;
             case 1: 
-                this.load.image("roomImage", "../assets/roomScenes/medium.png");
+                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
                 this.roomData = mediumDict;
                 break;
             case 2:
-                this.load.image("roomImage", "../assets/roomScenes/large.png");
+                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
                 this.roomData = largeDict;
                 break;
         }

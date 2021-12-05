@@ -11,11 +11,11 @@ var roomSizeScene = new Phaser.Class({
     },
 
     preload:function() {
-        this.load.image("bg", "../assets/background.png");
-        this.load.image("text", "../assets/roomSizeScenes/roomSize-Menu.png");
-        this.load.image("smol", "../assets/roomScenes/smol.png");
-        this.load.image("medium", "../assets/roomScenes/medium.png");
-        this.load.image("large", "../assets/roomScenes/large.png");
+        this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
+        this.load.image("text", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomSizeScenes/roomSize-Menu.png");
+        this.load.image("smol", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
+        this.load.image("medium", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
+        this.load.image("large", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
     },
     
     create: function(){

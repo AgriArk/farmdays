@@ -77,41 +77,41 @@ var gameScene = new Phaser.Class({
     },
     preload: function() {
         //background and sidebar
-        this.load.image("bg", "../assets/background.png");
-        this.load.image("sb", "../assets/sidebar.png");
+        this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
+        this.load.image("sb", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/sidebar.png");
 
         //buttons
-        this.load.image("electricity", "../assets/gameButtons/electricity.png");
-        this.load.image("human", "../assets/gameButtons/human.png");
-        this.load.image("leaf", "../assets/gameButtons/leaf.png");
-        this.load.image("robot", "../assets/gameButtons/robot.png");
-        this.load.image("done-button", "../assets/gameButtons/done-button.png");        
+        this.load.image("electricity", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/electricity.png");
+        this.load.image("human", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/human.png");
+        this.load.image("leaf", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/leaf.png");
+        this.load.image("robot", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/robot.png");
+        this.load.image("done-button", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/done-button.png");        
         
         //option tiles
-        this.load.image("harvester", "../assets/tiles/harvester.png");
-        this.load.image("hydroponic", "../assets/tiles/hydroponics-structure.png");
-        this.load.image("soil", "../assets/tiles/soil-planter.png");
-        this.load.image("aquaponic", "../assets/tiles/aquaponics.png");
-        this.load.image("natural", "../assets/tiles/natural.png");
-        this.load.image("renewable", "../assets/tiles/renewable.png");
-        this.load.image("seeding", "../assets/tiles/seeding.png");
-        this.load.image("sensor", "../assets/tiles/water-sensor.png");
-        this.load.image("quantity", "../assets/tiles/quantity.png");
-        this.load.image("plus", "../assets/tiles/plus.png");
-        this.load.image("minus", "../assets/tiles/minus.png");
+        this.load.image("harvester", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/harvester.png");
+        this.load.image("hydroponic", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/hydroponics-structure.png");
+        this.load.image("soil", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/soil-planter.png");
+        this.load.image("aquaponic", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/aquaponics.png");
+        this.load.image("natural", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/natural.png");
+        this.load.image("renewable", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/renewable.png");
+        this.load.image("seeding", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/seeding.png");
+        this.load.image("sensor", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/water-sensor.png");
+        this.load.image("quantity", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/quantity.png");
+        this.load.image("plus", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/plus.png");
+        this.load.image("minus", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/minus.png");
         
         //image of the room
         switch(this.roomNumber) {
             case 0:
-                this.load.image("roomImage", "../assets/roomScenes/smol.png");
+                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
                 this.roomData = smolDict;
                 break;
             case 1: 
-                this.load.image("roomImage", "../assets/roomScenes/medium.png");
+                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
                 this.roomData = mediumDict;
                 break;
             case 2:
-                this.load.image("roomImage", "../assets/roomScenes/large.png");
+                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
                 this.roomData = largeDict;
                 break;
         }
