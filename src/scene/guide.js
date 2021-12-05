@@ -10,7 +10,7 @@ var guideScene = new Phaser.Class({
     },
 
     preload:function() {
-        this.load.image("bg", "https://github.com/AgriArk/farmdays/blob/main/src/assets/background.png");
+        this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
         this.load.image("guide", "../assets/guideScenes/How-To-Menu.png");
         this.load.image("arrow", "../assets/guideScenes/arrow.png");
     },
