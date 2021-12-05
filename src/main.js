@@ -22,7 +22,7 @@ var config = {
         }
     },
     //ordered, scenes are loaded from right to left, most left scene will appear
-    scene: [ guideScene, roomSizeScene, gameScene, endScene ]  
+    scene: [ startScene, guideScene, roomSizeScene, gameScene, endScene ]  
 };
 
 var game = new Phaser.Game(config);

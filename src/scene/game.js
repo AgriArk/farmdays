@@ -24,7 +24,7 @@ var smolDict = {
     "harvester":    { "x": 375, "y": 290, "scale": 1.2},
     "seeding":      { "x": 350, "y": 310, "scale": 1.0},
     "sensor":       { "x": 290, "y": 300, "scale": 1.3},
-    "human":        { "x": 150, "y": 340, "scale": 2.0}
+    "human":        { "x": 260, "y": 300, "scale": 2.0}
 };
 
 var mediumDict = {
@@ -43,7 +43,7 @@ var mediumDict = {
     "harvester":    { "x": 410, "y": 275, "scale": 1.2},
     "seeding":      { "x": 320, "y": 310, "scale": 1.0},
     "sensor":       { "x": 220, "y": 340, "scale": 1.3},
-    "human":        { "x": 150, "y": 340, "scale": 2.0}
+    "human":        { "x": 190, "y": 340, "scale": 2.0}
 };
 
 var largeDict = {
@@ -62,7 +62,7 @@ var largeDict = {
     "harvester":    { "x": 460, "y": 230, "scale": 1.2},
     "seeding":      { "x": 360, "y": 270, "scale": 1.0},
     "sensor":       { "x": 230, "y": 320, "scale": 1.3},
-    "human":        { "x": 175, "y": 328, "scale": 2.0}
+    "human":        { "x": 165, "y": 328, "scale": 2.0}
 };
 
 var gameScene = new Phaser.Class({

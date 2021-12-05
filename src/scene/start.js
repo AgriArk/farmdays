@@ -10,11 +10,14 @@ var startScene = new Phaser.Class({
     },
 
     preload:function() {
-
+        this.load.image("startMenu", "../assets/startMenu.png");
     },
     
     create: function(){
-
+        this.add.image(0, 0, 'startMenu').setOrigin(0, 0).setScale(0.24); 
+        this.input.on('pointerdown', function(pointer){
+            this.scene.start("guideScene");
+        }, this);
     },
     
     update: function(){
