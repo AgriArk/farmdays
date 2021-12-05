@@ -5,7 +5,7 @@ var startScene = new Phaser.Class({
     initialize: function() {
         Phaser.Scene.call(this, { "key": "startScene" });
     },
-    init: function(data) {
+    init: function() {
         
     },
 

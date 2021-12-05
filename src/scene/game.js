@@ -71,7 +71,7 @@ var gameScene = new Phaser.Class({
         Phaser.Scene.call(this, { "key": "gameScene" });
     },
     init: function(data) {
-        this.roomNumber = 2; // data.roomNumber;//0 = smol, 1 = medium, 2 = large
+        this.roomNumber =  data.roomNumber;//0 = smol, 1 = medium, 2 = large
         this.initialTime = 300; //5 minutes timer
         this.initialHuman = 0; //initial manpower 
     },
