@@ -29,7 +29,15 @@ var endScene = new Phaser.Class({
         this.load.multiatlas('aquaponic-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/aquaponic-anim.json',"assets/animations");
         this.load.multiatlas('soil-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/soil-anim.json',"assets/animations");
         this.load.multiatlas('human-anim', 'https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/animations/human-anim.json',"assets/animations");
-
+		
+		//results
+		this.load.image("productivity","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/productivity.png");
+		this.load.image("profitability","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/Profitability.png");
+		this.load.image("quantity","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/quantity.png");
+		this.load.image("sustainability","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/sustainability.png");
+		//this.load.image("star",,"https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/star.png");
+		
+		
         //image of the room
         switch(this.roomNumber) {
             case 0:
@@ -63,6 +71,13 @@ var endScene = new Phaser.Class({
         this.robotSprite = this.add.sprite(350,525, 'robot').setScale(2);
         this.leafSprite = this.add.sprite(225,525, 'leaf').setScale(2);
         this.electricitySprite = this.add.sprite(100,525, 'electricity').setScale(2);
+		
+		//adding scores
+		this.add.image(575, 120, 'productivity').setOrigin(0, 0).setScale(0.13);
+		this.add.image(575, 480, 'profitability').setOrigin(0, 0).setScale(0.13);
+		this.add.image(575, 360, 'sustainability').setOrigin(0, 0).setScale(0.13);
+		this.add.image(575, 240, 'quantity').setOrigin(0, 0).setScale(0.13);
+		console.log('BRO PLS')
         
         for (const sprite of Object.keys(this.choices)) {
             console.log(sprite);
