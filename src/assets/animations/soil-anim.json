@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "soil-anim.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 125,
+				"h": 229
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 50,
+						"w": 123,
+						"h": 56
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 123,
+						"h": 56
+					}
+				},
+				{
+					"filename": "001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 51,
+						"w": 123,
+						"h": 55
+					},
+					"frame": {
+						"x": 1,
+						"y": 59,
+						"w": 123,
+						"h": 55
+					}
+				},
+				{
+					"filename": "002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 51,
+						"w": 123,
+						"h": 55
+					},
+					"frame": {
+						"x": 1,
+						"y": 116,
+						"w": 123,
+						"h": 55
+					}
+				},
+				{
+					"filename": "003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 51,
+						"w": 123,
+						"h": 55
+					},
+					"frame": {
+						"x": 1,
+						"y": 173,
+						"w": 123,
+						"h": 55
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:9c5449776d55e4385a7064b15efe6580:32bfde716969266ebe145ddfe1b88af2:6a7b8cdd22d48e2fdf017a3659fc9e20$"
+	}
+}

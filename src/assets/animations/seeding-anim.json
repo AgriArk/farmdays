@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "seeding-anim.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 432,
+				"h": 121
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 1,
+						"w": 105,
+						"h": 119
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 105,
+						"h": 119
+					}
+				},
+				{
+					"filename": "002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 1,
+						"w": 105,
+						"h": 119
+					},
+					"frame": {
+						"x": 108,
+						"y": 1,
+						"w": 105,
+						"h": 119
+					}
+				},
+				{
+					"filename": "003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 1,
+						"w": 105,
+						"h": 118
+					},
+					"frame": {
+						"x": 326,
+						"y": 1,
+						"w": 105,
+						"h": 118
+					}
+				},
+				{
+					"filename": "004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 150,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 1,
+						"w": 109,
+						"h": 118
+					},
+					"frame": {
+						"x": 215,
+						"y": 1,
+						"w": 109,
+						"h": 118
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:ddb64008023766d10c55880f65c16589:ca265c21588e9f12c5584f02cd9fc6b4:b0e16e1213b180e852bd87c1031c43b9$"
+	}
+}
