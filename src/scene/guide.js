@@ -23,7 +23,7 @@ var guideScene = new Phaser.Class({
             console.log('next button is triggered');
             this.scene.start("roomSizeScene");
         }, this);
-		this.scale.displaySize.setAspectRatio( 800/600 );
+		this.scale.displaySize.setAspectRatio( 1100/600 );
 		this.scale.refresh();
     },
     

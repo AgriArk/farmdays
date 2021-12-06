@@ -29,7 +29,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 
-function resizeApp ()
+/*function resizeApp ()
 {
     // Width-height-ratio of game resolution
     // Replace 360 with your game width, and replace 640 with your game height
@@ -54,4 +54,4 @@ function resizeApp ()
     canvas.style.height	= height + 'px';
 }
 
-window.addEventListener('resize', resizeApp);
+window.addEventListener('resize', resizeApp);*/
