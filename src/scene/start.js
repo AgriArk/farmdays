@@ -10,7 +10,7 @@ var startScene = new Phaser.Class({
     },
 
     preload:function() {
-        this.load.image("startMenu", "../assets/startMenu.png");
+        this.load.image("startMenu", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/startMenu.png");
     },
     
     create: function(){
