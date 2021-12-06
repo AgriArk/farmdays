@@ -59,24 +59,24 @@ var endScene = new Phaser.Class({
         //0,0 is the top left corner of the canvas
         //setorigin sets the image pointer to the top left corner of the image, else it will be in the center of the image automatically
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
-        this.add.image(550, 25, 'sb').setOrigin(0, 0).setScale(1.1);
+        this.add.image(750, 25, 'sb').setOrigin(0, 0).setScale(1.1);
         
         //adding image of room onto the canvas
-        this.room = this.add.image(50, 75, "roomImage").setOrigin(0, 0);
-        this.room.setScale(2);
+        this.room = this.add.image(100, 30, "roomImage").setOrigin(0, 0);
+        this.room.setScale(2.6);
         
         //adding buttons at the bottom of the page
         //for each button, upon clicked, it will toggle the display for the respective choices on and off
-        this.humanSprite = this.add.sprite(475,525, 'human').setScale(2);
-        this.robotSprite = this.add.sprite(350,525, 'robot').setScale(2);
-        this.leafSprite = this.add.sprite(225,525, 'leaf').setScale(2);
-        this.electricitySprite = this.add.sprite(100,525, 'electricity').setScale(2);
+        this.humanSprite = this.add.sprite(625,525, 'human').setScale(2);
+        this.robotSprite = this.add.sprite(475,525, 'robot').setScale(2);
+        this.leafSprite = this.add.sprite(325,525, 'leaf').setScale(2);
+        this.electricitySprite = this.add.sprite(175,525, 'electricity').setScale(2);
 		
 		//adding scores
-		this.add.image(575, 120, 'productivity').setOrigin(0, 0).setScale(0.13);
-		this.add.image(575, 480, 'profitability').setOrigin(0, 0).setScale(0.13);
-		this.add.image(575, 360, 'sustainability').setOrigin(0, 0).setScale(0.13);
-		this.add.image(575, 240, 'quantity').setOrigin(0, 0).setScale(0.13);
+		this.add.image(775, 120, 'productivity').setOrigin(0, 0).setScale(0.13);
+		this.add.image(775, 480, 'profitability').setOrigin(0, 0).setScale(0.13);
+		this.add.image(775, 360, 'sustainability').setOrigin(0, 0).setScale(0.13);
+		this.add.image(775, 240, 'quantity').setOrigin(0, 0).setScale(0.13);
 		
 		var productivity_score = 0;
 		var profitability_score = 0;

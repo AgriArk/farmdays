@@ -16,15 +16,15 @@ var smolDict = {
     'currentRobot': 0, 
     'totalRobotAllowable': 1,
     'choices': {},
-    "natural":      { "x": 380, "y": 270, "scale": 1.1},
-    "renewable":    { "x": 380, "y": 270, "scale": 1.1},
-    "hydroponic":   { "x": 260, "y": 260, "scale": 0.7},
-    "soil":         { "x": 260, "y": 260, "scale": 1.3},
-    "aquaponic":    { "x": 260, "y": 260, "scale": 1.0},
-    "harvester":    { "x": 375, "y": 290, "scale": 1.2},
-    "seeding":      { "x": 350, "y": 310, "scale": 1.0},
-    "sensor":       { "x": 290, "y": 300, "scale": 1.3},
-    "human":        { "x": 150, "y": 340, "scale": 2.0}
+    "natural":      { "x": 550, "y": 290, "scale": 1.25},
+    "renewable":    { "x": 550, "y": 290, "scale": 1.25},
+    "hydroponic":   { "x": 370, "y": 280, "scale": 0.9},
+    "soil":         { "x": 370, "y": 280, "scale": 1.5},
+    "aquaponic":    { "x": 380, "y": 280, "scale": 1.25},
+    "harvester":    { "x": 500, "y": 310, "scale": 1.4},
+    "seeding":      { "x": 475, "y": 330, "scale": 1.2},
+    "sensor":       { "x": 415, "y": 320, "scale": 1.5},
+    "human":        { "x": 280, "y": 310, "scale": 2.0}
 };
 
 var mediumDict = {
@@ -35,15 +35,15 @@ var mediumDict = {
     'currentRobot': 0, 
     'totalRobotAllowable': 2,
     'choices': {},
-    "natural":      { "x": 330, "y": 270, "scale": 1.1},
-    "renewable":    { "x": 330, "y": 270, "scale": 1.1},
-    "hydroponic":   { "x": 200, "y": 290, "scale": 0.7},
-    "soil":         { "x": 200, "y": 290, "scale": 1.3},
-    "aquaponic":    { "x": 200, "y": 290, "scale": 1.0},
-    "harvester":    { "x": 410, "y": 275, "scale": 1.2},
-    "seeding":      { "x": 320, "y": 310, "scale": 1.0},
-    "sensor":       { "x": 220, "y": 340, "scale": 1.3},
-    "human":        { "x": 150, "y": 340, "scale": 2.0}
+    "natural":      { "x": 490, "y": 280, "scale": 1.25},
+    "renewable":    { "x": 490, "y": 280, "scale": 1.25},
+    "hydroponic":   { "x": 300, "y": 300, "scale": 1},
+    "soil":         { "x": 300, "y": 300, "scale": 1.8},
+    "aquaponic":    { "x": 300, "y": 300, "scale": 1.4},
+    "harvester":    { "x": 555, "y": 280, "scale": 1.5},
+    "seeding":      { "x": 440, "y": 330, "scale": 1.25},
+    "sensor":       { "x": 310, "y": 370, "scale": 1.5},
+    "human":        { "x": 180, "y": 340, "scale": 2.0}
 };
 
 var largeDict = {
@@ -54,15 +54,15 @@ var largeDict = {
     'currentRobot': 0, 
     'totalRobotAllowable': 3,
     'choices': {},
-    "natural":      { "x": 350, "y": 210, "scale": 1.1},
-    "renewable":    { "x": 350, "y": 210, "scale": 1.1},
-    "hydroponic":   { "x": 230, "y": 270, "scale": 0.8},
-    "soil":         { "x": 230, "y": 270, "scale": 1.4},
-    "aquaponic":    { "x": 230, "y": 270, "scale": 1.1},
-    "harvester":    { "x": 460, "y": 230, "scale": 1.2},
-    "seeding":      { "x": 360, "y": 270, "scale": 1.0},
-    "sensor":       { "x": 230, "y": 320, "scale": 1.3},
-    "human":        { "x": 175, "y": 328, "scale": 2.0}
+    "natural":      { "x": 500, "y": 200, "scale": 1.25},
+    "renewable":    { "x": 500, "y": 200, "scale": 1.25},
+    "hydroponic":   { "x": 300, "y": 290, "scale": 1.1},
+    "soil":         { "x": 300, "y": 290, "scale": 1.9},
+    "aquaponic":    { "x": 310, "y": 290, "scale": 1.5},
+    "harvester":    { "x": 610, "y": 240, "scale": 1.5},
+    "seeding":      { "x": 470, "y": 300, "scale": 1.25},
+    "sensor":       { "x": 300, "y": 340, "scale": 1.5},
+    "human":        { "x": 195, "y": 328, "scale": 2.0}
 };
 
 var gameScene = new Phaser.Class({
@@ -128,17 +128,17 @@ var gameScene = new Phaser.Class({
         //0,0 is the top left corner of the canvas
         //setorigin sets the image pointer to the top left corner of the image, else it will be in the center of the image automatically
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
-        this.add.image(550, 25, 'sb').setOrigin(0, 0).setScale(1.1);
+        this.add.image(750, 25, 'sb').setOrigin(0, 0).setScale(1.1);
         
         //adding image of room onto the canvas
-        this.room = this.add.image(50, 75, "roomImage").setOrigin(0, 0);
-        this.room.setScale(2);
+        this.room = this.add.image(100, 30, "roomImage").setOrigin(0, 0);
+        this.room.setScale(2.6);
         
         //adding in-game error message
-        this.errorText = this.add.text(50, 425, '', textStyle);
+        this.errorText = this.add.text(420, 445, '', textStyle);
         
         //adding countdown timer at the top of the page
-        this.timeText = this.add.text(32,32, 'Countdown: ' + formatTime(this.initialTime), textStyle);
+        this.timeText = this.add.text(60,32, 'Countdown: ' + formatTime(this.initialTime), textStyle);
         this.timedEvent = this.time.addEvent({
             delay: 1000,
             loop: true,
@@ -153,7 +153,7 @@ var gameScene = new Phaser.Class({
 
         //adding buttons at the bottom of the page
         //for each button, upon clicked, it will toggle the display for the respective choices on and off
-        this.electricitySprite = this.add.sprite(100,525, 'electricity').setInteractive().setScale(2);
+        this.electricitySprite = this.add.sprite(175,525, 'electricity').setInteractive().setScale(2);
         this.electricitySprite.on("pointerdown", function (pointer) {
               this.electricitySprite.setTint(808080);
               this.showElectricity = !this.showElectricity;
@@ -168,7 +168,7 @@ var gameScene = new Phaser.Class({
         this.electricitySprite.on('pointerout', function(pointer){this.clearTint();});
         this.electricitySprite.on('pointerup', function(pointer){this.clearTint();});
         
-        this.leafSprite = this.add.sprite(225,525, 'leaf').setInteractive().setScale(2);
+        this.leafSprite = this.add.sprite(325,525, 'leaf').setInteractive().setScale(2);
         this.leafSprite.on('pointerout', function(pointer){this.clearTint();});
         this.leafSprite.on('pointerdown', function(pointer){
                 this.leafSprite.setTint(808080);
@@ -183,7 +183,7 @@ var gameScene = new Phaser.Class({
             }, this);
         this.leafSprite.on('pointerup', function(pointer){this.clearTint();});
         
-        this.robotSprite = this.add.sprite(350,525, 'robot').setInteractive().setScale(2);
+        this.robotSprite = this.add.sprite(475,525, 'robot').setInteractive().setScale(2);
         this.robotSprite.on('pointerout', function(pointer){this.clearTint();});
         this.robotSprite.on('pointerdown', function(pointer){
             this.robotSprite.setTint(808080);
@@ -198,7 +198,7 @@ var gameScene = new Phaser.Class({
         }, this);
         this.robotSprite.on('pointerup', function(pointer){this.clearTint();});
         
-        this.humanSprite = this.add.sprite(475,525, 'human').setInteractive().setScale(2);
+        this.humanSprite = this.add.sprite(625,525, 'human').setInteractive().setScale(2);
         this.humanSprite.on('pointerout', function(pointer){this.clearTint();});
         this.humanSprite.on('pointerdown', function(pointer){
             this.humanSprite.setTint(808080);
@@ -214,21 +214,21 @@ var gameScene = new Phaser.Class({
         this.humanSprite.on('pointerup', function(pointer){this.clearTint();});
                 
         //adding options tiles but set to not visible
-        this.naturalSprite = this.add.sprite(680, 125, 'natural').setInteractive().setVisible(0).setScale(1.2);
-        this.renewableSprite = this.add.sprite(680, 300, 'renewable').setInteractive().setVisible(0).setScale(1.2);
+        this.naturalSprite = this.add.sprite(880, 125, 'natural').setInteractive().setVisible(0).setScale(1.2);
+        this.renewableSprite = this.add.sprite(880, 300, 'renewable').setInteractive().setVisible(0).setScale(1.2);
         
-        this.hydroponicSprite = this.add.sprite(660, 125, 'hydroponic').setInteractive().setVisible(0).setScale(0.7);
-        this.soilSprite = this.add.sprite(660, 250, 'soil').setInteractive().setVisible(0).setScale(1.3);
-        this.aquaponicSprite = this.add.sprite(660, 420, 'aquaponic').setInteractive().setVisible(0).setScale(1.2);
+        this.hydroponicSprite = this.add.sprite(860, 125, 'hydroponic').setInteractive().setVisible(0).setScale(0.7);
+        this.soilSprite = this.add.sprite(860, 250, 'soil').setInteractive().setVisible(0).setScale(1.3);
+        this.aquaponicSprite = this.add.sprite(860, 420, 'aquaponic').setInteractive().setVisible(0).setScale(1.2);
         
-        this.harvesterSprite = this.add.sprite(695, 125, 'harvester').setInteractive().setVisible(0).setScale(1.2);
-        this.seedingSprite = this.add.sprite(665, 300, 'seeding').setInteractive().setVisible(0).setScale(1.2);
-        this.sensorSprite = this.add.sprite(625, 450, 'sensor').setInteractive().setVisible(0).setScale(1.5);
+        this.harvesterSprite = this.add.sprite(895, 125, 'harvester').setInteractive().setVisible(0).setScale(1.2);
+        this.seedingSprite = this.add.sprite(865, 300, 'seeding').setInteractive().setVisible(0).setScale(1.2);
+        this.sensorSprite = this.add.sprite(825, 450, 'sensor').setInteractive().setVisible(0).setScale(1.5);
         
-        this.quantitySprite = this.add.sprite(670, 100, 'quantity').setVisible(0).setScale(0.2);
-        this.plusSprite = this.add.sprite(600, 150, 'plus').setInteractive().setVisible(0).setScale(0.2);
-        this.minusSprite = this.add.sprite(700, 150, 'minus').setInteractive().setVisible(0).setScale(0.2);
-        this.quantityText = this.add.text(645, 135, '', textStyle);
+        this.quantitySprite = this.add.sprite(870, 100, 'quantity').setVisible(0).setScale(0.2);
+        this.plusSprite = this.add.sprite(800, 150, 'plus').setInteractive().setVisible(0).setScale(0.2);
+        this.minusSprite = this.add.sprite(900, 150, 'minus').setInteractive().setVisible(0).setScale(0.2);
+        this.quantityText = this.add.text(845, 135, '', textStyle);
         
         //tiles triggers 
         this.naturalSprite.on('pointerdown', function(pointer){this.tileCallback('natural');}, this);
@@ -353,7 +353,7 @@ var gameScene = new Phaser.Class({
             this.roomData['currentLeaf'] == this.roomData['totalLeafAllowable'] && 
             this.doneButton == null ){
                 //adding in done button
-                this.doneButton = this.add.sprite(420, 370, 'done-button').setInteractive().setOrigin(0,0).setScale(0.25);
+                this.doneButton = this.add.sprite(580, 430, 'done-button').setInteractive().setOrigin(0,0).setScale(0.3);
                 //done button trigger
                 this.doneButton.on('pointerdown', function(pointer){
                     console.log('done button is triggered');
