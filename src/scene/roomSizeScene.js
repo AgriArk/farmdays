@@ -20,10 +20,10 @@ var roomSizeScene = new Phaser.Class({
     
     create: function(){
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
-        this.add.image(0, 0, 'text').setOrigin(0, 0).setScale(0.24);
-        this.smol = this.add.sprite(235,300, 'smol').setInteractive().setScale(0.9);
-        this.medium = this.add.sprite(450,300, 'medium').setInteractive().setScale(0.9);
-        this.large = this.add.sprite(675,300, 'large').setInteractive().setScale(0.9);
+        this.add.image(0, 0, 'text').setOrigin(0, 0).setScale(0.3);
+        this.smol = this.add.sprite(240,300, 'smol').setInteractive().setScale(1.5);
+        this.medium = this.add.sprite(580,300, 'medium').setInteractive().setScale(1.5);
+        this.large = this.add.sprite(920,300, 'large').setInteractive().setScale(1.5);
 
         this.smol.on('pointerdown', function(pointer){roomNumber = 0;}, this);
         this.medium.on('pointerdown', function(pointer){roomNumber = 1;}, this);
