@@ -35,7 +35,7 @@ var endScene = new Phaser.Class({
 		this.load.image("profitability","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/Profitability.png");
 		this.load.image("quantity","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/quantity.png");
 		this.load.image("sustainability","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/sustainability.png");
-		//this.load.image("star",,"https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/star.png");
+		this.load.image("star","https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/EndScene/star.png");
 		
 		
         //image of the room
@@ -77,10 +77,31 @@ var endScene = new Phaser.Class({
 		this.add.image(575, 480, 'profitability').setOrigin(0, 0).setScale(0.13);
 		this.add.image(575, 360, 'sustainability').setOrigin(0, 0).setScale(0.13);
 		this.add.image(575, 240, 'quantity').setOrigin(0, 0).setScale(0.13);
-		console.log('BRO PLS')
+		
+		var productivity_score = 0;
+		var profitability_score = 0;
+		var sustainability_score = 0;
         
         for (const sprite of Object.keys(this.choices)) {
             console.log(sprite);
+			switch(sprite){
+				case "renewable":
+					sustainability_score+=2;
+					break;
+				case "aquaponic":
+					sustainability_score++;
+					productivity_score++;
+					break;
+				case "harvesting":
+				case "seeding":
+				case "sensors":
+					productivity_score+=2/this.roomData["totalRobotAllowable"];
+					break;
+				case "hydroponic":
+					productivity_score++;
+					break;
+				
+			}
             if (animationList.indexOf(sprite ) >=0){
                 console.log('animated loop');
                 var frameNames = this.anims.generateFrameNames(sprite+'-anim', { start: 1 , end: 4, zeroPad: 3,
@@ -99,6 +120,14 @@ var endScene = new Phaser.Class({
                 this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]['y'], sprite).setScale(this.roomData[sprite]['scale'])
             }
         };
+		
+		//adding stars
+		for (i = 0; i<productivity_score; i++){
+			this.add.image(565+i*60, 75, 'star').setOrigin(0, 0).setScale(0.25);
+		}
+		for (i = 0; i<sustainability_score; i++){
+			this.add.image(565+i*60, 315, 'star').setOrigin(0, 0).setScale(0.25);
+		}
         
     },
     update: function() {
