@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>agriarkGame</title>
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser-arcade-physics.min.js"></script>
     <script src="scene/endScene.js"></script>
     <script src="scene/game.js"></script>
     <script src="scene/roomSizeScene.js"></script>
@@ -10,12 +10,27 @@
     <script src="scene/start.js"></script>
     <style>
         body {
-            height: 100%;
-            margin: 0;
-        }
+			margin				: 0;
+			overflow			: hidden;
+			background-color	: black;
+		}
+
+		#phaser-app {
+			margin			: 0 auto;
+			display			: flex;
+			flex-direction	: column;
+			justify-content	: center;
+		}
+
+		canvas {
+			width	: 100%;
+			height	: 100%;
+		}
     </style>
 </head>
 <body id="main">
-    <script type="text/javascript" src="main.js"></script>
+    <div id="phaser-app">
+		<script type="text/javascript" src="main.js"></script>
+	</div>
 </body>
 </html>
