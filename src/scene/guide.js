@@ -17,8 +17,8 @@ var guideScene = new Phaser.Class({
     
     create: function(){
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
-        this.add.image(0, 0, 'guide').setOrigin(0, 0).setScale(0.24);
-        this.nextButton = this.add.sprite(700,520, 'arrow').setInteractive().setScale(0.3);
+        this.add.image(25, 0, 'guide').setOrigin(0, 0).setScale(0.25);
+        this.nextButton = this.add.sprite(910,535, 'arrow').setInteractive().setScale(0.3);
         this.nextButton.on('pointerdown', function(pointer){
             console.log('next button is triggered');
             this.scene.start("roomSizeScene");
