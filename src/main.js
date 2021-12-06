@@ -1,14 +1,14 @@
 console.log("main.js loaded")
 var config = {
     type: Phaser.AUTO, //renderer
-    width: 800,
-    height: 600,
+    //width: 800,
+    //height: 500,
     scale: {
          
          mode: Phaser.Scale.FIT,
-         autoCenter: Phaser.Scale.CENTER_BOTH
-         //width: 800,
-         //height: 500
+         autoCenter: Phaser.Scale.CENTER_BOTH,
+         width: 1100,
+         height: 600
     },
 	
     dom: {
@@ -33,7 +33,7 @@ function resizeApp ()
 {
     // Width-height-ratio of game resolution
     // Replace 360 with your game width, and replace 640 with your game height
-    let game_ratio = 800 / 600;
+    let game_ratio = 800 / 500;
 	
     // Make div full height of browser and keep the ratio of game resolution
     let div = document.getElementById('phaser-app');
