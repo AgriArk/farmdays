@@ -72,34 +72,58 @@ var endScene = new Phaser.Class({
         this.leafSprite = this.add.sprite(325,525, 'leaf').setScale(2);
         this.electricitySprite = this.add.sprite(175,525, 'electricity').setScale(2);
 		
-		//adding scores
+		//adding score labels
 		this.add.image(775, 120, 'productivity').setOrigin(0, 0).setScale(0.13);
-		this.add.image(775, 480, 'profitability').setOrigin(0, 0).setScale(0.13);
+		this.add.image(780, 480, 'profitability').setOrigin(0, 0).setScale(0.13);
 		this.add.image(775, 360, 'sustainability').setOrigin(0, 0).setScale(0.13);
-		this.add.image(775, 240, 'quantity').setOrigin(0, 0).setScale(0.13);
+		this.add.image(800, 240, 'quantity').setOrigin(0, 0).setScale(0.13);
 		
 		var productivity_score = 0;
 		var profitability_score = 0;
 		var sustainability_score = 0;
+		var quantity_score = 0;
+		
+		//counters for items
+		var energy_check = 0;
+		var robots = 0;
+		var headcount = 0;
+		var method = 0;
         
         for (const sprite of Object.keys(this.choices)) {
             console.log(sprite);
 			switch(sprite){
 				case "renewable":
-					sustainability_score+=2;
+					sustainability_score+=3;
+					energy_check = 1;
+					break;
+				case "natural":
+					energy_check = 1;
 					break;
 				case "aquaponic":
-					sustainability_score++;
-					productivity_score++;
-					break;
-				case "harvesting":
-				case "seeding":
-				case "sensors":
-					productivity_score+=2/this.roomData["totalRobotAllowable"];
+					sustainability_score+=2;
+					productivity_score+=3;
+					method = 2;
 					break;
 				case "hydroponic":
-					productivity_score++;
+					productivity_score+=3;
+					method = 2;
 					break;
+				case "soil":
+					productivity_score+=2;
+					method = 1;
+					break;
+				/*case "harvesting":
+				case "seeding":
+				case "sensors":
+					robots+=1;
+					console.log("anotha robot");
+				
+					
+					break;*/
+				case "human":
+					headcount = this.roomData["choices"].human;
+					break;
+				
 				
 			}
             if (animationList.indexOf(sprite ) >=0){
@@ -122,11 +146,44 @@ var endScene = new Phaser.Class({
         };
 		
 		//adding stars
+		
+		
+		productivity_score+=(this.roomData["currentRobot"]*energy_check)*2/this.roomData["totalRobotAllowable"];
+		if((this.roomData["currentRobot"]+headcount)>this.roomData["totalRobotAllowable"]*2){
+			productivity_score*=this.roomData["totalRobotAllowable"]/(this.roomData["currentRobot"]+headcount) //if there are too many people, then productivity should go down
+		}
+		quantity_score = (this.roomData["totalRobotAllowable"]+method)*(headcount+this.roomData["currentRobot"])/(this.roomData["totalRobotAllowable"]*2) //optimal manpower is 2*robot capacity. Each robot can replace 1 headcount
+		console.log(this.roomData["totalRobotAllowable"]);
+		console.log("hmm");
+		console.log(this.roomData["choices"].human);
+		if (quantity_score>5){
+			quantity_score=5;
+		}
+		
+		profitability_score = quantity_score*productivity_score/5;
+		
+		if (headcount == 0 || method == 0){ //need headcount and a plot of land to do anything, otherwise all 0
+			var productivity_score = 0;
+			var profitability_score = 0;
+			var sustainability_score = 0;
+			var quantity_score = 0;
+		}
+		
+		
+		
 		for (i = 0; i<productivity_score; i++){
-			this.add.image(565+i*60, 75, 'star').setOrigin(0, 0).setScale(0.25);
+			this.add.image(760+i*40, 85, 'star').setOrigin(0, 0).setScale(0.15);
+		}
+		
+		for (i = 0; i<quantity_score; i++){
+			this.add.image(760+i*40, 205, 'star').setOrigin(0, 0).setScale(0.15);
+			
 		}
 		for (i = 0; i<sustainability_score; i++){
-			this.add.image(565+i*60, 315, 'star').setOrigin(0, 0).setScale(0.25);
+			this.add.image(760+i*40, 325, 'star').setOrigin(0, 0).setScale(0.15);
+		}
+		for (i = 0; i<profitability_score; i++){
+			this.add.image(760+i*40, 445, 'star').setOrigin(0, 0).setScale(0.15);
 		}
         
     },
