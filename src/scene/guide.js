@@ -6,6 +6,7 @@ var guideScene = new Phaser.Class({
         Phaser.Scene.call(this, { "key": "guideScene" });
     },
     init: function(data) {
+        this.checkreset = data.reset;
         
     },
 
@@ -22,6 +23,9 @@ var guideScene = new Phaser.Class({
         this.nextButton.on('pointerdown', function(pointer){
             console.log('next button is triggered');
             this.scene.start("roomSizeScene");
+            if (this.checkreset){
+                this.scene.restart('roomSizeScene');
+            }
         }, this);
 		this.scale.displaySize.setAspectRatio( 1100/600 );
 		this.scale.refresh();

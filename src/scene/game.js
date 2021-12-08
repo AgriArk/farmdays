@@ -79,6 +79,9 @@ var gameScene = new Phaser.Class({
         //background and sidebar
         this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
         this.load.image("sb", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/sidebar.png");
+        this.load.image("reset", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/resetButton.png");
+        this.load.image("questionMark", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/questionMark.png");
+        this.load.image("cheats", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/cheatSheet.png");
 
         //buttons
         this.load.image("electricity", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/electricity.png");
@@ -123,12 +126,25 @@ var gameScene = new Phaser.Class({
         this.showLeaf = false;
         this.showRobot = false;
         this.showHuman = false;
+        this.showCheats = false;
 
         //adding background and sidebar onto the canvas
         //0,0 is the top left corner of the canvas
         //setorigin sets the image pointer to the top left corner of the image, else it will be in the center of the image automatically
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
         this.add.image(750, 25, 'sb').setOrigin(0, 0).setScale(1.1);
+        this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
+        this.reset.on('pointerdown', function(pointer){
+            console.log('reset');
+            this.scene.start("guideScene", {"reset": true});
+            this.scene.moveAbove("gameScene", "roomSizeScene");
+            this.scene.stop();
+        }, this);
+        this.questionMark = this.add.sprite(120, 70, 'questionMark').setOrigin(0, 0).setInteractive().setScale(0.11);
+        this.questionMark.on('pointerdown', function(pointer){
+            this.showCheats = !this.showCheats;
+            this.cheatsDisplay();
+        }, this);
         
         //adding image of room onto the canvas
         this.room = this.add.image(100, 30, "roomImage").setOrigin(0, 0);
@@ -241,6 +257,13 @@ var gameScene = new Phaser.Class({
         this.sensorSprite.on('pointerdown', function(pointer){this.tileCallback('sensor');}, this);
         this.plusSprite.on('pointerdown', function(pointer){this.quantityCallback(1);}, this);
         this.minusSprite.on('pointerdown', function(pointer){this.quantityCallback(-1);}, this);
+
+        //cheatsheet
+        this.cheats = this.add.sprite(25, 0, 'cheats').setOrigin(0, 0).setScale(0.22).setVisible(0).setInteractive();
+        this.cheats.on('pointerdown', function(pointer){
+            this.showCheats = false;
+            this.cheatsDisplay();
+        }, this);
     
     },
 
@@ -256,6 +279,18 @@ var gameScene = new Phaser.Class({
                 "choices": this.roomData['choices']
             });
         }
+    },
+
+    //callback to toggle cheats
+    cheatsDisplay: function() {
+        //console.log("cheats toggled");
+        var x;
+        if (this.showCheats){
+            x = 1;
+        } else {
+            x = 0;
+        }
+        this.cheats.setVisible(x);
     },
 
     //callbacks to trigger side bar display, trigger event is respective button clicks

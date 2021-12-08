@@ -25,15 +25,15 @@ var roomSizeScene = new Phaser.Class({
         this.medium = this.add.sprite(570,310, 'medium').setInteractive().setScale(1.4);
         this.large = this.add.sprite(920,300, 'large').setInteractive().setScale(1.5);
 
-        this.smol.on('pointerdown', function(pointer){roomNumber = 0;}, this);
-        this.medium.on('pointerdown', function(pointer){roomNumber = 1;}, this);
-        this.large.on('pointerdown', function(pointer){roomNumber = 2;}, this);
+        this.smol.on('pointerdown', function(pointer){this.roomNumber = 0;}, this);
+        this.medium.on('pointerdown', function(pointer){this.roomNumber = 1;}, this);
+        this.large.on('pointerdown', function(pointer){this.roomNumber = 2;}, this);
     },
     
     update: function(){
-        if (roomNumber != null) {
+        if (this.roomNumber != null) {
             this.scene.start("gameScene", {
-                "roomNumber": roomNumber
+                "roomNumber": this.roomNumber
             });
         };
     }
