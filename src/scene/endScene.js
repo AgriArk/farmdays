@@ -15,6 +15,7 @@ var endScene = new Phaser.Class({
         //background and sidebar
         this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
         this.load.image("sb", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/sidebar.png");
+		this.load.image("reset", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/resetButton.png");
 
         //buttons
         this.load.image("electricity", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/electricity.png");
@@ -64,6 +65,15 @@ var endScene = new Phaser.Class({
         //adding image of room onto the canvas
         this.room = this.add.image(100, 30, "roomImage").setOrigin(0, 0);
         this.room.setScale(2.6);
+		
+		//reset btn
+		this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
+        this.reset.on('pointerdown', function(pointer){
+            console.log('reset');
+            this.scene.start("guideScene", {"reset": true});
+            this.scene.moveAbove("gameScene", "roomSizeScene");
+            this.scene.stop();
+        }, this);
         
         //adding buttons at the bottom of the page
         //for each button, upon clicked, it will toggle the display for the respective choices on and off
@@ -162,7 +172,7 @@ var endScene = new Phaser.Class({
 		
 		profitability_score = quantity_score*productivity_score/5;
 		
-		if (headcount == 0 || method == 0){ //need headcount and a plot of land to do anything, otherwise all 0
+		if (method == 0 || (headcount+this.roomData["currentRobot"])==0){ //need robots/headcount and a plot of land to do anything, otherwise all 0
 			var productivity_score = 0;
 			var profitability_score = 0;
 			var sustainability_score = 0;
