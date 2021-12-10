@@ -12,8 +12,8 @@ var guideScene = new Phaser.Class({
 
     preload:function() {
         this.load.image("bg", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/background.png");
-        this.load.image("guide", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/guideScenes/How-To-Menu.png");
-        // this.load.image("guide", "../assets/guideScenes/How-To-Menu-01.png");
+        // this.load.image("guide", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/guideScenes/How-To-Menu.png");
+        this.load.image("guide", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/guideScenes/How-To-Menu-resized.png");
         this.load.image("arrow", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/guideScenes/arrow.png");
     },
     
