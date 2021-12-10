@@ -274,9 +274,9 @@ var gameScene = new Phaser.Class({
         this.sensorSprite = this.add.sprite(825, 450, 'sensor').setInteractive().setVisible(0).setScale(1.5);
         
         this.quantitySprite = this.add.sprite(870, 100, 'quantity').setVisible(0).setScale(0.2);
-        this.plusSprite = this.add.sprite(800, 150, 'plus').setInteractive().setVisible(0).setScale(0.2);
-        this.minusSprite = this.add.sprite(900, 150, 'minus').setInteractive().setVisible(0).setScale(0.2);
-        this.quantityText = this.add.text(845, 135, '', textStyle);
+        this.plusSprite = this.add.sprite(920, 150, 'plus').setInteractive().setVisible(0).setScale(0.2);
+        this.minusSprite = this.add.sprite(800, 150, 'minus').setInteractive().setVisible(0).setScale(0.2);
+        this.quantityText = this.add.text(855, 135, '', textStyle);
         
         //tiles triggers 
         this.naturalSprite.on('pointerdown', function(pointer){this.tileCallback('natural');}, this);
