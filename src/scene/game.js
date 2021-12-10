@@ -72,7 +72,7 @@ var gameScene = new Phaser.Class({
     },
     init: function(data) {
         this.roomNumber =  data.roomNumber;//0 = smol, 1 = medium, 2 = large
-        this.initialTime = 300; //5 minutes timer
+        this.initialTime = 60; //1 minutes timer
         this.initialHuman = 0; //initial manpower 
     },
     preload: function() {
@@ -131,6 +131,8 @@ var gameScene = new Phaser.Class({
     },
 
     create: function() {
+        console.log("gameScreen loaded");
+
         //variable to toggle the display of options for electricity, leaf, robot and human
         this.showElectricity = false;
         this.showLeaf = false;
@@ -145,8 +147,7 @@ var gameScene = new Phaser.Class({
         this.add.image(750, 25, 'sb').setOrigin(0, 0).setScale(1.1);
         this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
         this.reset.on('pointerdown', function(pointer){
-            console.log('reset');
-			
+            console.log('reset');			
             this.scene.start("guideScene", {"reset": true});
             this.scene.moveAbove("gameScene", "roomSizeScene");
             this.scene.stop();
@@ -327,7 +328,7 @@ var gameScene = new Phaser.Class({
 
     //callbacks to trigger side bar display, trigger event is respective button clicks
     electricityDisplay: function() {
-        console.log("Electricity Display triggered");
+        // console.log("Electricity Display triggered");
         var x;
         if (this.showElectricity){
             x = 1;
@@ -339,7 +340,7 @@ var gameScene = new Phaser.Class({
     },
 
     leafDisplay: function() {
-        console.log("Leaf Display triggered");
+        // console.log("Leaf Display triggered");
         var x;
         if (this.showLeaf){
             x = 1;
@@ -352,7 +353,7 @@ var gameScene = new Phaser.Class({
     },
 
     robotDisplay: function() {
-        console.log("Robot Display triggered");
+        // console.log("Robot Display triggered");
         var x;
         if (this.showRobot){
             x = 1;
@@ -366,7 +367,7 @@ var gameScene = new Phaser.Class({
 
     humanDisplay: function(){
         //NOT DONE: side bar display for human button
-        console.log("Human Display triggered");
+        // console.log("Human Display triggered");
         var x;
         if (this.showHuman){
             x = 1;
@@ -387,51 +388,54 @@ var gameScene = new Phaser.Class({
             this.errorText.setText("");
             this.initialHuman += num;
             this.quantityText.setText(this.initialHuman);
+            this.tileCallback("");
         }
     },
 
     //callback to trigger placement of tiles on the room, trigger event is clicking on tiles on side bar
     tileCallback: function(sprite) {
         this.errorText.setText('');
-        console.log('tile callback triggered');
+        // console.log('tile callback triggered');
         var category;
-        if ( sprite == "natural" || sprite == "renewable") {
-            category = "Electricity";
-        } else if ( sprite == 'hydroponic' || sprite == 'soil' || sprite == "aquaponic" ) {
-            category = "Leaf";
-        } else if ( sprite == "harvester" || sprite == "seeding" || sprite == "sensor" ) {
-            category = "Robot";
-        };
-        if (this.roomData['choices'][sprite] != null){
-            console.log('already present');
-            this.roomData['choices'][sprite].destroy()
-            this.roomData ['current' + category] -= 1;
-            delete this.roomData['choices'][sprite];
-        } else if ( this.roomData['current'+ category] + 1 <= this.roomData['total' + category+ 'Allowable']) {
-                spriteObj = this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]["y"], sprite).setScale(this.roomData[sprite]["scale"]);
-                console.log(sprite)
-                this.roomData ['current' + category] += 1;
-                this.roomData['choices'][sprite] = spriteObj;
-                console.log(this.roomData['choices']);
-        } else {
-            this.errorText.setText('Insufficient space');
+        if (sprite != ""){
+            if ( sprite == "natural" || sprite == "renewable") {
+                category = "Electricity";
+            } else if ( sprite == 'hydroponic' || sprite == 'soil' || sprite == "aquaponic" ) {
+                category = "Leaf";
+            } else if ( sprite == "harvester" || sprite == "seeding" || sprite == "sensor" ) {
+                category = "Robot";
+            };
+            if (this.roomData['choices'][sprite] != null){
+                this.roomData['choices'][sprite].destroy()
+                this.roomData ['current' + category] -= 1;
+                delete this.roomData['choices'][sprite];
+            } else if ( this.roomData['current'+ category] + 1 <= this.roomData['total' + category+ 'Allowable']) {
+                    spriteObj = this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]["y"], sprite).setScale(this.roomData[sprite]["scale"]);
+                    this.roomData ['current' + category] += 1;
+                    this.roomData['choices'][sprite] = spriteObj;
+                    console.log(this.roomData['choices']);
+            } else {
+                this.errorText.setText('Insufficient space');
+            };
         };
         if ( this.roomData['currentElectricity'] == this.roomData['totalElectricityAllowable'] && 
-            this.roomData['currentLeaf'] == this.roomData['totalLeafAllowable'] && 
+            this.roomData['currentLeaf'] == this.roomData['totalLeafAllowable'] &&
             this.doneButton == null ){
+                if (this.initialHuman > 0 || this.roomData['currentRobot'] > 0){
                 //adding in done button
-                this.doneButton = this.add.sprite(580, 430, 'done-button').setInteractive().setOrigin(0,0).setScale(0.3);
-                //done button trigger
-                this.doneButton.on('pointerdown', function(pointer){
-                    console.log('done button is triggered');
-                    if (this.initialHuman > 0){
-                        this.roomData['choices']['human'] = this.initialHuman;
-                    };
-                    this.scene.start("endScene", {
-                        "roomNumber": this.roomNumber,
-                        "choices": this.roomData['choices']
-                    });
-                }, this);
+                    this.doneButton = this.add.sprite(580, 430, 'done-button').setInteractive().setOrigin(0,0).setScale(0.3);
+                    //done button trigger
+                    this.doneButton.on('pointerdown', function(pointer){
+                        console.log('done button is triggered');
+                        if (this.initialHuman > 0){
+                            this.roomData['choices']['human'] = this.initialHuman;
+                        };
+                        this.scene.start("endScene", {
+                            "roomNumber": this.roomNumber,
+                            "choices": this.roomData['choices']
+                        });
+                    }, this);
+                };
         };
     }
 });

@@ -42,20 +42,22 @@ var endScene = new Phaser.Class({
         //image of the room
         switch(this.roomNumber) {
             case 0:
-                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
+                this.load.image("roomImage1", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
                 this.roomData = smolDict;
                 break;
             case 1: 
-                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
+                this.load.image("roomImage2", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
                 this.roomData = mediumDict;
                 break;
             case 2:
-                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
+                this.load.image("roomImage3", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
                 this.roomData = largeDict;
                 break;
         }
     },
     create: function() {
+        console.log("endScreen loaded");
+
         //adding background and sidebar onto the canvas
         //0,0 is the top left corner of the canvas
         //setorigin sets the image pointer to the top left corner of the image, else it will be in the center of the image automatically
@@ -63,15 +65,27 @@ var endScene = new Phaser.Class({
         this.add.image(750, 25, 'sb').setOrigin(0, 0).setScale(1.1);
         
         //adding image of room onto the canvas
-        this.room = this.add.image(100, 30, "roomImage").setOrigin(0, 0);
-        this.room.setScale(2.6);
+		switch(this.roomNumber) {
+            case 0:
+			    this.room = this.add.image(100, 30, "roomImage1").setOrigin(0, 0);
+				this.room.setScale(2.6);
+
+                break;
+            case 1: 
+                this.room = this.add.image(100, 30, "roomImage2").setOrigin(0, 0);
+				this.room.setScale(2.6);
+                break;
+            case 2:
+                this.room = this.add.image(100, 30, "roomImage3").setOrigin(0, 0);
+				this.room.setScale(2.6);
+                break;
+        }
 		
 		//reset btn
 		this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
         this.reset.on('pointerdown', function(pointer){
             console.log('reset');
 			//data.roomNumber = 10;
-			
             this.scene.start("guideScene", {"reset": true});
             this.scene.moveAbove("gameScene", "roomSizeScene");
             this.scene.stop();
@@ -139,7 +153,7 @@ var endScene = new Phaser.Class({
 				
 			}
             if (animationList.indexOf(sprite ) >=0){
-                console.log('animated loop');
+                // console.log('animated loop');
                 var frameNames = this.anims.generateFrameNames(sprite+'-anim', { start: 1 , end: 4, zeroPad: 3,
                         prefix: '', suffix: '.png'});
                 this.anims.create({
@@ -148,11 +162,10 @@ var endScene = new Phaser.Class({
                         frameRate: 4,
                         repeat: -1
                 });
-                console.log(this.roomData);
                 this.add.sprite(this.roomData[sprite]['x'], this.roomData[sprite]['y'], sprite+"-anim", '001.png').setScale(this.roomData[sprite]['scale']).play(sprite+'-emote');
 
             } else{
-                console.log('static loop');
+                // console.log('static loop');
                 this.add.sprite(this.roomData[sprite]["x"], this.roomData[sprite]['y'], sprite).setScale(this.roomData[sprite]['scale'])
             }
         };
@@ -166,7 +179,6 @@ var endScene = new Phaser.Class({
 		}
 		quantity_score = (this.roomData["totalRobotAllowable"]+method)*(headcount+this.roomData["currentRobot"])/(this.roomData["totalRobotAllowable"]*2) //optimal manpower is 2*robot capacity. Each robot can replace 1 headcount
 		console.log(this.roomData["totalRobotAllowable"]);
-		console.log("hmm");
 		console.log(this.roomData["choices"].human);
 		if (quantity_score>5){
 			quantity_score=5;

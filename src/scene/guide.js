@@ -17,6 +17,7 @@ var guideScene = new Phaser.Class({
     },
     
     create: function(){
+        console.log("guideScreen loaded");
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
         this.add.image(25, 0, 'guide').setOrigin(0, 0).setScale(0.25);
         this.nextButton = this.add.sprite(980,540, 'arrow').setInteractive().setScale(0.3);
@@ -24,7 +25,7 @@ var guideScene = new Phaser.Class({
             console.log('next button is triggered');
             this.scene.start("roomSizeScene");
             if (this.checkreset){
-                this.scene.restart('roomSizeScene');
+                this.scene.start('roomSizeScene');
             }
         }, this);
 		this.scale.displaySize.setAspectRatio( 1100/600 );

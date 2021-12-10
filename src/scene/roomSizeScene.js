@@ -15,12 +15,12 @@ var roomSizeScene = new Phaser.Class({
         this.load.image("text", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomSizeScenes/roomSize-Menu.png");
         this.load.image("smol", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
         this.load.image("medium", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
-        this.load.image("large", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
-		this.roomNumber = 10;
-		
+        this.load.image("large", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");		
     },
     
     create: function(){
+        console.log("roomSizeScreen loaded");
+        this.roomNumber = 10;
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
         this.add.image(0, 0, 'text').setOrigin(0, 0).setScale(0.32);
         this.smol = this.add.sprite(240,330, 'smol').setInteractive().setScale(1.3);
