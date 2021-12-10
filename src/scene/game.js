@@ -103,18 +103,22 @@ var gameScene = new Phaser.Class({
         this.load.image("plus", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/plus.png");
         this.load.image("minus", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/tiles/minus.png");
         
+		//alert(this.roomNumber);
+		
         //image of the room
         switch(this.roomNumber) {
             case 0:
-                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
+                this.load.image("roomImage1", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
                 this.roomData = smolDict;
+				//alert("pls");
                 break;
             case 1: 
-                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
+                this.load.image("roomImage2", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
                 this.roomData = mediumDict;
                 break;
             case 2:
-                this.load.image("roomImage", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
+                this.load.image("roomImage3", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
+				//alert("NO");
                 this.roomData = largeDict;
                 break;
         }
@@ -123,7 +127,7 @@ var gameScene = new Phaser.Class({
 		this.roomData['currentLeaf'] = 0;
 		this.roomData['currentRobot'] = 0;
 		this.roomData['choices'] = {};
-		//alert(this.roomData['currentLeaf']);
+		
     },
 
     create: function() {
@@ -142,7 +146,7 @@ var gameScene = new Phaser.Class({
         this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
         this.reset.on('pointerdown', function(pointer){
             console.log('reset');
-			//this.roomNumber = 10;
+			
             this.scene.start("guideScene", {"reset": true});
             this.scene.moveAbove("gameScene", "roomSizeScene");
             this.scene.stop();
@@ -154,8 +158,28 @@ var gameScene = new Phaser.Class({
         }, this);
         
         //adding image of room onto the canvas
-        this.room = this.add.image(100, 30, "roomImage").setOrigin(0, 0);
-        this.room.setScale(2.6);
+		switch(this.roomNumber) {
+            case 0:
+			    this.room = this.add.image(100, 30, "roomImage1").setOrigin(0, 0);
+				//this.room.setAlpha(0.2);
+				//alert("running?");
+				this.room.setScale(2.6);
+                
+                break;
+            case 1: 
+                this.room = this.add.image(100, 30, "roomImage2").setOrigin(0, 0);
+				//this.room.setAlpha(0.2);
+				//alert("running?");
+				this.room.setScale(2.6);
+                break;
+            case 2:
+                this.room = this.add.image(100, 30, "roomImage3").setOrigin(0, 0);
+				//this.room.setAlpha(0.2);
+				//alert("running?");
+				this.room.setScale(2.6);
+                break;
+        }
+
         
         //adding in-game error message
         this.errorText = this.add.text(420, 445, '', textStyle);

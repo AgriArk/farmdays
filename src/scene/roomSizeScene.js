@@ -34,7 +34,7 @@ var roomSizeScene = new Phaser.Class({
     
     update: function(){
         if (this.roomNumber < 3) {
-			
+			//alert(this.roomNumber);
             this.scene.start("gameScene", {
                 "roomNumber": this.roomNumber
 				
