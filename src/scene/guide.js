@@ -20,7 +20,7 @@ var guideScene = new Phaser.Class({
     create: function(){
         console.log("guideScreen loaded");
         this.add.image(0, 0, 'bg').setOrigin(0, 0); 
-        this.add.image(25, 0, 'guide').setOrigin(0, 0).setScale(0.24);
+        this.add.image(25, 0, 'guide').setOrigin(0, 0).setScale(0.23);
         this.nextButton = this.add.sprite(980,525, 'arrow').setInteractive().setScale(0.3);
         this.nextButton.on('pointerdown', function(pointer){
             console.log('next button is triggered');
