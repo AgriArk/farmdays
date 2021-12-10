@@ -81,7 +81,8 @@ var gameScene = new Phaser.Class({
         this.load.image("sb", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/sidebar.png");
         this.load.image("reset", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/resetButton.png");
         this.load.image("questionMark", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/questionMark.png");
-        this.load.image("cheats", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/cheatSheet.png");
+        this.load.image("cheats", "../assets/cheatSheet-02.png");
+        // this.load.image("cheats", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/cheatSheet.png");
 
         //buttons
         this.load.image("electricity", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/gameButtons/electricity.png");
