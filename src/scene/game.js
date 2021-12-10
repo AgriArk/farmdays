@@ -164,26 +164,26 @@ var gameScene = new Phaser.Class({
 			    this.room = this.add.image(100, 30, "roomImage1").setOrigin(0, 0);
 				//this.room.setAlpha(0.2);
 				//alert("running?");
-				this.room.setScale(2.6);
+				this.room.setScale(2.5);
                 
                 break;
             case 1: 
                 this.room = this.add.image(100, 30, "roomImage2").setOrigin(0, 0);
 				//this.room.setAlpha(0.2);
 				//alert("running?");
-				this.room.setScale(2.6);
+				this.room.setScale(2.5);
                 break;
             case 2:
                 this.room = this.add.image(100, 30, "roomImage3").setOrigin(0, 0);
 				//this.room.setAlpha(0.2);
 				//alert("running?");
-				this.room.setScale(2.6);
+				this.room.setScale(2.5);
                 break;
         }
 
         
         //adding in-game error message
-        this.errorText = this.add.text(420, 445, '', textStyle);
+        this.errorText = this.add.text(150, 450, '', textStyle);
         
         //adding countdown timer at the top of the page
         this.timeText = this.add.text(60,32, 'Countdown: ' + formatTime(this.initialTime), textStyle);
