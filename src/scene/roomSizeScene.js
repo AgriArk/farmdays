@@ -1,6 +1,6 @@
 console.log('roomSizeScene.js running');
 
-var roomNumber;
+var roomNumber = 10;
 
 var roomSizeScene = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -16,6 +16,8 @@ var roomSizeScene = new Phaser.Class({
         this.load.image("smol", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/smol.png");
         this.load.image("medium", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/medium.png");
         this.load.image("large", "https://raw.githubusercontent.com/AgriArk/farmdays/main/src/assets/roomScenes/large.png");
+		this.roomNumber = 10;
+		
     },
     
     create: function(){
@@ -31,9 +33,11 @@ var roomSizeScene = new Phaser.Class({
     },
     
     update: function(){
-        if (this.roomNumber != null) {
+        if (this.roomNumber < 3) {
+			
             this.scene.start("gameScene", {
                 "roomNumber": this.roomNumber
+				
             });
         };
     }

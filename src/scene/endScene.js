@@ -70,6 +70,7 @@ var endScene = new Phaser.Class({
 		this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
         this.reset.on('pointerdown', function(pointer){
             console.log('reset');
+			//data.roomNumber = 10;
             this.scene.start("guideScene", {"reset": true});
             this.scene.moveAbove("gameScene", "roomSizeScene");
             this.scene.stop();

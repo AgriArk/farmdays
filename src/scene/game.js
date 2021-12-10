@@ -118,6 +118,12 @@ var gameScene = new Phaser.Class({
                 this.roomData = largeDict;
                 break;
         }
+		this.doneButton = null;                 //hard coded reset of variables
+		this.roomData['currentElectricity'] = 0;
+		this.roomData['currentLeaf'] = 0;
+		this.roomData['currentRobot'] = 0;
+		this.roomData['choices'] = {};
+		//alert(this.roomData['currentLeaf']);
     },
 
     create: function() {
@@ -136,6 +142,7 @@ var gameScene = new Phaser.Class({
         this.reset = this.add.image(60, 70, 'reset').setOrigin(0, 0).setScale(0.1).setInteractive();
         this.reset.on('pointerdown', function(pointer){
             console.log('reset');
+			//this.roomNumber = 10;
             this.scene.start("guideScene", {"reset": true});
             this.scene.moveAbove("gameScene", "roomSizeScene");
             this.scene.stop();
@@ -264,6 +271,7 @@ var gameScene = new Phaser.Class({
             this.showCheats = false;
             this.cheatsDisplay();
         }, this);
+		
     
     },
 
